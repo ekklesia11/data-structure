@@ -24,13 +24,7 @@ class Stack {
   }
 
   peek() {
-    if (!this.isEmpty()) {
-      let lastKey = (this.length() - 1).toString();
-      let lastValue = this[lastKey];
-      return lastValue;
-    } else {
-      return;
-    }
+    return this.isEmpty() ? undefined : this[(this.length() - 1).toString()];
   }
 
   clear() {
