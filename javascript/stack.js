@@ -1,38 +1,52 @@
 // stack datastructure
 
-// stack constructor
 class Stack {
-  constructor() {
-    this.data = {};
-  };
+  // possible to be omitted
+  // without contructor class will create an empty object
+  constructor() {}
 
+  // methods
   push(data) {
     let lastKey;
-    for (let key in this.data) {
+    for (let key in this) {
       lastKey = key;
-    };
+    }
 
     if (!lastKey) {
-      this.data["0"] = data;
+      this["0"] = data;
     } else {
-      this.data[Number(lastKey) + 1] = data;
-    };
+      this[Number(lastKey) + 1] = data;
+    }
 
-    return this.data;
-  };
+    return data;
+  }
 
-  pop() { };
+  pop() {}
 
-  peek() { };
+  peek() {}
 
-  clear() { };
+  clear() {}
 
-  isEmpty() { };
+  isEmpty() {}
 
-  length() { };
-};
+  length() {
+    let leng = 0;
+    for (let key in this) {
+      leng = Number(key);
+    }
 
+    return leng;
+  }
+}
 
 // test
 const stack = new Stack();
 
+console.log("empty stack : ", stack);
+console.group("actions");
+console.log("push return : ", stack.push(1));
+console.log("push return : ", stack.push(2));
+console.log("push return : ", stack.push(3));
+console.groupEnd();
+console.log("after action : ", stack);
+console.log("length : ", stack.length());
