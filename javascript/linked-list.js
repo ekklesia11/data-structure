@@ -39,6 +39,15 @@ class LinkedList {
   }
 
   removeAt(index) {
+    if (index === 0) {
+      this.head.data = this[this.head.to].data;
+
+      let nextNode = this.head.to;
+      this.head.to = this[this.head.to].to;
+      delete this[nextNode];
+
+      return 0;
+    }
     let current = this.head;
     let target = this.head;
     let targetIndex = 0;
