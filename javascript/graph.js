@@ -72,7 +72,27 @@ class Graph {
 
   edgeList(data) {
     let index = this.indexOf(data);
-    return this[index.toString()];
+    let list = [];
+
+    let target = this[index.toString()];
+
+    for (let i of target.from) {
+      let edgeInfo = {
+        from: i,
+        weight: index + i,
+      };
+      list.push(edgeInfo);
+    }
+
+    for (let i of target.to) {
+      let edgeInfo = {
+        to: i,
+        weight: index + i,
+      };
+      list.push(edgeInfo);
+    }
+
+    return list;
   }
 
   removeNode(data) {
@@ -144,7 +164,7 @@ console.log("addEdge return : ", graph.addEdge("a", "d"));
 console.log("addEdge return : ", graph.addEdge("d", "e"));
 console.log("addEdge return : ", graph.addEdge("e", "a"));
 console.log("addEdge return : ", graph.addEdge("e", "b"));
-console.log("edgeList return : ", graph.edgeList("a"));
+console.log("edgeList return : ", graph.edgeList("e"));
 console.log("graph : ", graph);
 console.log("removeNode return : ", graph.removeNode("a"));
 console.log("length : ", graph.length());
