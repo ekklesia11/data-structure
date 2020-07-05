@@ -7,31 +7,25 @@ class Tree {
   }
 
   appendChild(data) {
-    function searchForNode(currentNode, nodeChild) {
-      if (nodeChild.length < 2) {
-        return currentNode.appendChild(data);
-      } else {
-        for (let v of nodeChild) {
-          if (v.child < 2) {
-            return searchForNode(v, v.child);
+    let newNode = new Tree(data);
+
+    function getEmptyNode(node) {
+      for (let v of node.child) {
+        if (node.child.length === 0) {
+          return node.child.push(newNode);
+        } else if (node.child.length === 1) {
+          if (v.data < data) {
+            return node.child.push(newNode);
+          } else {
+            return node.child.unshift(newNode);
           }
+        } else {
+          v.appendChild(data);
         }
       }
     }
 
-    let newTree = new Tree(data);
-
-    if (this.child.length === 0) {
-      return this.child.push(newTree);
-    } else if (this.child.length === 1) {
-      if (this.child[0].data < data) {
-        return this.child.push(newTree);
-      } else {
-        return this.child.unshift(newTree);
-      }
-    } else if (this.child.length === 2) {
-      return searchForNode(this, this.child);
-    }
+    return getEmptyNode(this);
   }
 
   removeNode(data) {}
